@@ -62,13 +62,21 @@ describe("Tesing all the endpoints", () => {
       expect(response.status).toBe(200);
       expect(response.body.rescues.length).toBe(1);
     });
+    test("200: gets all rescues with the queried animal", async () => {
+      const response = await request(app).get("/rescues?animal=mammal");
+
+      expect(response.status).toBe(200);
+      expect(response.body.rescues.length).toBe(3);
+    });
     test("404: return the correct error message when no rescue under name found", async () => {
       const response = await request(app).get(
         "/rescues?name=rescuer%20million"
       );
 
       expect(response.status).toBe(404);
-      expect(response.body.msg).toBe("there are no rescues under this name");
+      expect(response.body.msg).toBe(
+        "there are no rescues of this type under this name"
+      );
     });
   });
 });

@@ -4,7 +4,7 @@ module.exports = [
 
     email: "rescuer1@gmail.com",
     injury: "major",
-    animal: "mammal",
+    animal: "Reptile",
     location: { latitude: 53.409385358983765, longitude: -1.472134105861187 },
   },
   {
@@ -12,11 +12,11 @@ module.exports = [
 
     email: "rescuer2@gmail.com",
     injury: "major",
-    animal: "mammal",
+    animal: "Bird",
     location: { latitude: 53.409385358983321, longitude: -1.472134105861187 },
   },
   {
-    name: "rescuer three",
+    name: "Rescuer Three",
 
     email: "rescuer3@gmail.com",
     injury: "major",

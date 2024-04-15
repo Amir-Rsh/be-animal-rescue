@@ -12,9 +12,9 @@ const addRescue = async (req, res, next) => {
 
 const getRescues = async (req, res, next) => {
   try {
-    const { name } = req.query;
+    const { name, animal } = req.query;
 
-    const rescues = await fetchRescues(name);
+    const rescues = await fetchRescues(name, animal);
     res.status(200).send({ rescues });
   } catch (error) {
     next(error);

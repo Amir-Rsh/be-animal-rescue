@@ -34,18 +34,32 @@ const postRescue = async (data) => {
   }
 };
 
-const fetchRescues = async (name) => {
+const fetchRescues = async (name, animal) => {
   try {
     let response;
-    if (name) {
-      response = await rescues.find({ name: name }).toArray();
+    if (name && animal) {
+      const nameRegex = new RegExp(name, "i");
+      const animalRegex = new RegExp(animal, "i");
+      response = await rescues
+        .find({ name: nameRegex, animal: animalRegex })
+        .toArray();
     }
-    if (!name) {
+    if (name) {
+      const regex = new RegExp(name, "i");
+      response = await rescues.find({ name: regex }).toArray();
+    }
+    if (animal) {
+      const regex = new RegExp(animal, "i");
+      response = await rescues.find({ animal: regex }).toArray();
+    }
+    if (!name && !animal) {
       response = await rescues.find({}).toArray();
     }
     if (response === null) return Promise.reject({ msg: "Not found" });
     if (response.length === 0)
-      return Promise.reject({ msg: "there are no rescues under this name" });
+      return Promise.reject({
+        msg: "there are no rescues of this type under this name",
+      });
 
     return response;
   } catch (error) {

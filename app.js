@@ -17,7 +17,7 @@ app.use((error, req, res, next) => {
   if (error.msg === "Not found") {
     res.status(404).send(error);
   }
-  if (error.msg === "there are no rescues under this name") {
+  if (error.msg === "there are no rescues of this type under this name") {
     res.status(404).send(error);
   }
 });
