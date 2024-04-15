@@ -44,11 +44,11 @@ const fetchRescues = async (name, animal) => {
         .find({ name: nameRegex, animal: animalRegex })
         .toArray();
     }
-    if (name) {
+    if (name && !animal) {
       const regex = new RegExp(name, "i");
       response = await rescues.find({ name: regex }).toArray();
     }
-    if (animal) {
+    if (animal && !name) {
       const regex = new RegExp(animal, "i");
       response = await rescues.find({ animal: regex }).toArray();
     }

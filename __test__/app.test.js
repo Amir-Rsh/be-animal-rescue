@@ -68,6 +68,14 @@ describe("Tesing all the endpoints", () => {
       expect(response.status).toBe(200);
       expect(response.body.rescues.length).toBe(3);
     });
+    test("200: gets all rescues with the queried animal and name", async () => {
+      const response = await request(app).get(
+        "/rescues?animal=mammal&name=rescuer%20four"
+      );
+
+      expect(response.status).toBe(200);
+      expect(response.body.rescues.length).toBe(1);
+    });
     test("404: return the correct error message when no rescue under name found", async () => {
       const response = await request(app).get(
         "/rescues?name=rescuer%20million"
